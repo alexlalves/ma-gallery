@@ -7,9 +7,14 @@ const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow(
-    { width: 800, height: 600 }
-  );
+  mainWindow = new BrowserWindow({
+    autoHideMenuBar: true,
+    darkTheme: true,
+    icon: path.join(__dirname, 'public/favicon.ico'),
+    title: 'Ma Gallery',
+    width: 800,
+    height: 600,
+  });
 
   const url = isDev? 'http://localhost:3000': `file://${path.join(__dirname, '../build/index.html')}`
   mainWindow.loadURL(url);

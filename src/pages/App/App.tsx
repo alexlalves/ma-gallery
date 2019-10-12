@@ -1,10 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from '../../assets/logo/logo512.png';
+import Toolbar from '../../components/Toolbar/Toolbar';
 import './App.css';
 
 const App: React.FC = () => {
   return (
     <div className="App">
+      <Toolbar />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
