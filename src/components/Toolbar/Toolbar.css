@@ -1,0 +1,23 @@
+.Toolbar {
+  align-items: center;
+  background-color: #000000;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.Toolbar__branding {
+  align-items: center;
+  display: flex;
+}
+
+.Toolbar__branding__text {
+  margin-left: 8px;
+  font-size: 24px;
+}
+
+.Toolbar__branding__logo {
+  max-width: 32px;
+  max-height: 32px;
+}
