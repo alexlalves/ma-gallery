@@ -14,18 +14,18 @@ const App: React.FC = () => {
       <div className='App__toolbar'>
         <Toolbar/>
       </div>
-      <section className='App__images'>
-        <img
-          alt='logo bh'
-          src={_typhlosionImageTwo}
-          className='App__images__image App__images__image--background'
-        />
+      <div className='App__images'>
         <img
           alt='logo a'
           className='App__images__image App__images__image--main'
           src={_typhlosionImageTwo}
         />
-      </section>
+        <img
+          alt='logo a'
+          className='App__images__image App__images__image--background'
+          src={_typhlosionImageTwo}
+        />
+      </div>
     </div>
   );
 }
