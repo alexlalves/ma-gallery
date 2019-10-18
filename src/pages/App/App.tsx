@@ -8,6 +8,15 @@ import typhlosionImageTwo from '../../assets/sample_images/typhlosion_2.png';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import './App.css';
 
+const images = [
+  logo,
+  typhlosionImage,
+  typhlosionImageTwo,
+  furryImage,
+  hentaiImage,
+  transImage,
+];
+
 interface IState {
   currentImage: string,
   imageNumber: number,
@@ -17,45 +26,18 @@ class App extends React.Component<{}, IState> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      currentImage: typhlosionImageTwo,
+      currentImage: logo,
       imageNumber: 0,
     };
   }
 
   public changeMockedImage = () => {
-    let newImage = "";
-
-    switch(this.state.imageNumber) {
-      case 0: {
-        newImage = typhlosionImage;
-        break;
-      }
-      case 1: {
-        newImage = furryImage;
-        break;
-      }
-      case 2: {
-        newImage = hentaiImage;
-        break;
-      }
-      case 3: {
-        newImage = transImage;
-        break;
-      }
-      case 4: {
-        newImage = logo;
-        break;
-      }
-      case 5: {
-        newImage = typhlosionImageTwo;
-        break;
-      }
-    }
+    let newImageNumber = this.state.imageNumber === images.length - 1 ? 0 : this.state.imageNumber + 1;
 
     this.setState({
-      currentImage: newImage,
-      imageNumber: this.state.imageNumber == 5 ? 0 : this.state.imageNumber + 1,
-    })
+      currentImage: images[newImageNumber],
+      imageNumber: newImageNumber,
+    });
   }
 
   public render() {
