@@ -1,20 +1,10 @@
 import React from 'react';
 import logo from '../../assets/logo/logo512.png';
-import furryImage from '../../assets/sample_images/furry.jpg';
-import hentaiImage from '../../assets/sample_images/hentai.jpg';
-import transImage from '../../assets/sample_images/transgender.jpg';
-import typhlosionImage from '../../assets/sample_images/typhlosion.jpg';
-import typhlosionImageTwo from '../../assets/sample_images/typhlosion_2.png';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import './App.css';
 
 const images = [
-  logo,
-  typhlosionImage,
-  typhlosionImageTwo,
-  furryImage,
-  hentaiImage,
-  transImage,
+  ''
 ];
 
 interface IState {
@@ -22,8 +12,12 @@ interface IState {
   imageNumber: number,
 }
 
-class App extends React.Component<{}, IState> {
-  constructor(props: {}) {
+interface IProps {
+  openedFile: string,
+}
+
+class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       currentImage: logo,
@@ -62,19 +56,6 @@ class App extends React.Component<{}, IState> {
     });
   }
 
-  public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (event.key) {
-      case 'ArrowLeft': {
-        this.changeMockedImageToLeft();
-        break;
-      }
-      case 'ArrowRight': {
-        this.changeMockedImageToRight();
-        break;
-      }
-    }
-  }
-
   public render() {
     return (
       <div className='App' onKeyDown={this.keyPress} tabIndex={0}>
@@ -83,9 +64,9 @@ class App extends React.Component<{}, IState> {
         </div>
         <div className='App__images'>
           <img
-            alt='logo a'
+            alt={this.props.openedFile}
             className='App__images__image App__images__image--main'
-            src={this.state.currentImage}
+            src={this.props.openedFile ? this.props.openedFile : this.state.currentImage}
           />
           <img
             alt='logo a'

@@ -3,6 +3,7 @@ const isDev = require('electron-is-dev');
 const path = require('path');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
+const ipcMain = electron.ipcMain;
 
 let mainWindow;
 
@@ -14,6 +15,9 @@ function createWindow() {
     title: 'Ma Gallery',
     width: 800,
     height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+    }
   });
 
   const url = isDev? 'http://localhost:3000': `file://${path.join(__dirname, '../build/index.html')}`
@@ -24,3 +28,7 @@ function createWindow() {
 app.on('ready', createWindow);
 app.on('window-all-closed', () => {if (process.platform !== 'darwin') {app.quit();}});
 app.on('activate', () => {if (mainWindow === null) {createWindow();}});
+
+ipcMain.on('opened-file-request', (event) => {
+  event.returnValue = isDev ? '/sample_images/gif.gif' : process.argv[1];
+})
