@@ -31,7 +31,20 @@ class App extends React.Component<{}, IState> {
     };
   }
 
-  public changeMockedImage = () => {
+    public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      switch (event.key) {
+        case 'ArrowLeft': {
+          this.changeMockedImageToLeft();
+          break;
+        }
+        case 'ArrowRight': {
+          this.changeMockedImageToRight();
+          break;
+        }
+      }
+    }
+
+  public changeMockedImageToRight = () => {
     let newImageNumber = this.state.imageNumber === images.length - 1 ? 0 : this.state.imageNumber + 1;
 
     this.setState({
@@ -40,9 +53,31 @@ class App extends React.Component<{}, IState> {
     });
   }
 
+  public changeMockedImageToLeft = () => {
+    let newImageNumber = this.state.imageNumber === 0 ? images.length - 1 : this.state.imageNumber - 1;
+
+    this.setState({
+      currentImage: images[newImageNumber],
+      imageNumber: newImageNumber,
+    });
+  }
+
+  public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    switch (event.key) {
+      case 'ArrowLeft': {
+        this.changeMockedImageToLeft();
+        break;
+      }
+      case 'ArrowRight': {
+        this.changeMockedImageToRight();
+        break;
+      }
+    }
+  }
+
   public render() {
     return (
-      <div className='App'>
+      <div className='App' onKeyDown={this.keyPress} tabIndex={0}>
         <div className='App__toolbar'>
           <Toolbar/>
         </div>
@@ -51,7 +86,6 @@ class App extends React.Component<{}, IState> {
             alt='logo a'
             className='App__images__image App__images__image--main'
             src={this.state.currentImage}
-            onClick={this.changeMockedImage}
           />
           <img
             alt='logo a'
