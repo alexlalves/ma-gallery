@@ -5,5 +5,6 @@ import App from './pages/App/App';
 const { ipcRenderer } = window.require("electron")
 
 const fileName = ipcRenderer.sendSync('opened-file-request');
+const availableFiles = ipcRenderer.sendSync('opened-file-directory');
 
-ReactDOM.render(<App openedFile={fileName} />, document.getElementById('root'));
+ReactDOM.render(<App openedFile={fileName} files={availableFiles} />, document.getElementById('root'));

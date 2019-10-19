@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from '../../assets/logo/logo512.png';
 import Toolbar from '../../components/Toolbar/Toolbar';
 import './App.css';
 
-const images = [
+let images = [
   ''
 ];
 
@@ -14,15 +13,18 @@ interface IState {
 
 interface IProps {
   openedFile: string,
+  files: string[],
 }
 
 class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      currentImage: logo,
+      currentImage: props.openedFile,
       imageNumber: 0,
     };
+
+    images = props.files;
   }
 
     public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -66,7 +68,7 @@ class App extends React.Component<IProps, IState> {
           <img
             alt={this.props.openedFile}
             className='App__images__image App__images__image--main'
-            src={this.props.openedFile ? this.props.openedFile : this.state.currentImage}
+            src={this.state.currentImage}
           />
           <img
             alt='logo a'

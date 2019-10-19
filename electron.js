@@ -1,11 +1,13 @@
 const electron = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
+const fs = require('fs');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const ipcMain = electron.ipcMain;
 
 let mainWindow;
+let fileName;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -30,5 +32,18 @@ app.on('window-all-closed', () => {if (process.platform !== 'darwin') {app.quit(
 app.on('activate', () => {if (mainWindow === null) {createWindow();}});
 
 ipcMain.on('opened-file-request', (event) => {
-  event.returnValue = isDev ? '/sample_images/gif.gif' : process.argv[1];
+  fileName = isDev ? '/sample_images/gif.gif' : process.argv[1];
+  event.returnValue = fileName;
+});
+
+ipcMain.on('opened-file-directory', (event) => {
+  const directory = path.dirname(fileName);
+
+  console.log(directory);
+
+  const files = fs.readdirSync(directory).map((file) => path.join(directory, file));
+
+  console.log(files);
+
+  event.returnValue = files;
 })
