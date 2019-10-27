@@ -9,6 +9,7 @@
 .Toolbar__branding {
   align-items: center;
   display: flex;
+  min-width: 160px;
   width: 50%;
 }
 
