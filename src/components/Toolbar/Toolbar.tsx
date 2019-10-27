@@ -2,8 +2,6 @@ import React from 'react';
 import logo from '../../assets/logo/logo512.png';
 import './Toolbar.css';
 
-const path = window.require('path');
-
 interface IProps {
   filename: string,
 }
@@ -19,7 +17,7 @@ class Toolbar extends React.Component<IProps> {
           </span>
         </div>
         <div>
-          { path.parse(this.props.filename).base }
+          { this.props.filename }
         </div>
         <div>
           | | |
