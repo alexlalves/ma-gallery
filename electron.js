@@ -37,13 +37,17 @@ ipcMain.on('opened-file-request', (event) => {
 });
 
 ipcMain.on('opened-file-directory', (event) => {
-  const directory = path.dirname(fileName);
+  if (isDev) {
+    const directory = path.dirname(path.join(__dirname, 'public/sample_images/gif.gif'));
 
-  console.log(directory);
+    const files = fs.readdirSync(directory).map((file) => path.join('sample_images', file));
 
-  const files = fs.readdirSync(directory).map((file) => path.join(directory, file));
+    event.returnValue = files;
+  } else {
+    const directory = path.dirname(fileName);
 
-  console.log(files);
+    const files = fs.readdirSync(directory).map((file) => path.join(directory, file));
 
-  event.returnValue = files;
+    event.returnValue = files;
+  }
 })
