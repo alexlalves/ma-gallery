@@ -5,7 +5,8 @@
         "node": true
     },
     "extends": [
-        "airbnb"
+        "airbnb-base",
+        "airbnb/rules/react"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -29,5 +30,12 @@
         }],
         "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
         "jsx-quotes": ["error", "prefer-single"]
+    },
+    "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     }
 }

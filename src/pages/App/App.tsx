@@ -5,7 +5,7 @@ import './App.css';
 const path = window.require('path');
 
 let images = [
-  ''
+  '',
 ];
 
 interface IState {
@@ -30,7 +30,8 @@ class App extends React.Component<IProps, IState> {
   }
 
   public extractFilename = () => {
-    return path.parse(this.state.currentImage).base;
+    const { state } = this;
+    return path.parse(state.currentImage).base;
   }
 
   public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -43,11 +44,15 @@ class App extends React.Component<IProps, IState> {
         this.changeMockedImageToRight();
         break;
       }
+      default: {
+        break;
+      }
     }
   }
 
   public changeMockedImageToRight = () => {
-    let newImageNumber = this.state.imageNumber === images.length - 1 ? 0 : this.state.imageNumber + 1;
+    const { state } = this;
+    const newImageNumber = state.imageNumber === images.length - 1 ? 0 : state.imageNumber + 1;
 
     this.setState({
       currentImage: images[newImageNumber],
@@ -56,7 +61,8 @@ class App extends React.Component<IProps, IState> {
   }
 
   public changeMockedImageToLeft = () => {
-    let newImageNumber = this.state.imageNumber === 0 ? images.length - 1 : this.state.imageNumber - 1;
+    const { state } = this;
+    const newImageNumber = state.imageNumber === 0 ? images.length - 1 : state.imageNumber - 1;
 
     this.setState({
       currentImage: images[newImageNumber],
@@ -65,21 +71,26 @@ class App extends React.Component<IProps, IState> {
   }
 
   public render() {
+    const { props, state } = this;
     return (
-      <div className='App' onKeyDown={this.keyPress} tabIndex={0}>
+      <div
+        className='App'
+        onKeyDown={this.keyPress}
+        tabIndex={0}
+      >
         <div className='App__toolbar'>
-          <Toolbar filename={this.extractFilename()}/>
+          <Toolbar filename={this.extractFilename()} />
         </div>
         <div className='App__images'>
           <img
-            alt={this.props.openedFile}
+            alt={props.openedFile}
             className='App__images__image App__images__image--main'
-            src={this.state.currentImage}
+            src={state.currentImage}
           />
           <img
             alt='logo a'
             className='App__images__image App__images__image--background'
-            src={this.state.currentImage}
+            src={state.currentImage}
           />
         </div>
       </div>
