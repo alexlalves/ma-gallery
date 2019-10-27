@@ -8,8 +8,8 @@
   <br/>
   <br/>
   <img
-    src="https://user-images.githubusercontent.com/30939389/67155768-71ae5e80-f2eb-11e9-922c-6cf4b633de8c.png"
-    alt="Ma Gallery Logo"
+    src="https://user-images.githubusercontent.com/30939389/67643073-b3de2e00-f8f1-11e9-959e-f9dace2cf34e.png"
+    alt="Preview"
   />
 </h1>
 
