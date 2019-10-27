@@ -31,6 +31,32 @@ app.on('ready', createWindow);
 app.on('window-all-closed', () => { if (process.platform !== 'darwin') { app.quit(); } });
 app.on('activate', () => { if (mainWindow === null) { createWindow(); } });
 
+function isAllowedFileExtension(filename) {
+  const allowedExtensions = [
+    '.apng',
+    '.png',
+    '.bmp',
+    '.gif',
+    '.ico',
+    '.cur',
+    '.jpg',
+    '.jpeg',
+    '.jfif',
+    '.pjpeg',
+    '.pjp',
+    '.svg',
+    '.tif',
+    '.tiff',
+    '.webp',
+  ];
+
+  return allowedExtensions.includes(path.extname(filename).toLowerCase());
+}
+
+function filterFileExtensions(filenames) {
+  return (filenames.filter((file) => isAllowedFileExtension(file)));
+}
+
 ipcMain.on('opened-file-request', (event) => {
   fileName = isDev ? '/sample_images/gif.gif' : process.argv[1];
   event.returnValue = fileName;
@@ -40,13 +66,17 @@ ipcMain.on('opened-file-directory', (event) => {
   if (isDev) {
     const directory = path.dirname(path.join(__dirname, 'public/sample_images/gif.gif'));
 
-    const files = fs.readdirSync(directory).map((file) => path.join('sample_images', file));
+    const filenames = fs.readdirSync(directory);
+    const filteredNames = (filterFileExtensions(filenames));
+    const files = filteredNames.map((file) => path.join('sample_images', file));
 
     event.returnValue = files;
   } else {
     const directory = path.dirname(fileName);
 
-    const files = fs.readdirSync(directory).map((file) => path.join(directory, file));
+    const filenames = fs.readdirSync(directory);
+    const filteredNames = (filterFileExtensions(filenames));
+    const files = filteredNames.map((file) => path.join(directory, file));
 
     event.returnValue = files;
   }
