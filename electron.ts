@@ -1,10 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const electron = require('electron');
-const isDev = require('electron-is-dev');
-const path = require('path');
-const fs = require('fs');
-
-const { app, BrowserWindow, ipcMain } = electron;
+import { app, BrowserWindow, ipcMain } from 'electron';
+import * as isDev from 'electron-is-dev';
+import * as path from 'path';
+import * as fs from 'fs';
 
 let mainWindow;
 let fileName;
