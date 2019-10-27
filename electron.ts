@@ -4,6 +4,8 @@ import * as isDev from 'electron-is-dev';
 import * as path from 'path';
 import * as fs from 'fs';
 
+import { filterFileExtensions } from './src/utils/fileutils';
+
 let mainWindow;
 let fileName;
 
@@ -28,32 +30,6 @@ function createWindow() {
 app.on('ready', createWindow);
 app.on('window-all-closed', () => { if (process.platform !== 'darwin') { app.quit(); } });
 app.on('activate', () => { if (mainWindow === null) { createWindow(); } });
-
-function isAllowedFileExtension(filename) {
-  const allowedExtensions = [
-    '.apng',
-    '.png',
-    '.bmp',
-    '.gif',
-    '.ico',
-    '.cur',
-    '.jpg',
-    '.jpeg',
-    '.jfif',
-    '.pjpeg',
-    '.pjp',
-    '.svg',
-    '.tif',
-    '.tiff',
-    '.webp',
-  ];
-
-  return allowedExtensions.includes(path.extname(filename).toLowerCase());
-}
-
-function filterFileExtensions(filenames) {
-  return (filenames.filter((file) => isAllowedFileExtension(file)));
-}
 
 ipcMain.on('opened-file-request', (event) => {
   fileName = isDev ? '/sample_images/gif.gif' : process.argv[1];
