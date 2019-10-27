@@ -4,6 +4,6 @@ import Toolbar from './Toolbar';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Toolbar />, div);
+  ReactDOM.render(<Toolbar filename='' />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
