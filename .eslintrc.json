@@ -26,6 +26,8 @@
     "rules": {
         "no-param-reassign": [2, {
             "props": false
-        }]
+        }],
+        "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
+        "jsx-quotes": ["error", "prefer-single"]
     }
 }

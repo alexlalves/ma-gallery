@@ -6,18 +6,20 @@ interface IProps {
   filename: string,
 }
 
-class Toolbar extends React.Component<IProps> {
+class Toolbar extends React.PureComponent<IProps> {
   public render() {
+    const { props } = this;
+
     return (
       <nav className='Toolbar'>
         <div className='Toolbar__branding'>
-          <img className='Toolbar__branding__logo' src={logo} alt='aaa'/>
+          <img className='Toolbar__branding__logo' src={logo} alt='aaa' />
           <span className='Toolbar__branding__text'>
             Ma Gallery
           </span>
         </div>
         <div>
-          { this.props.filename }
+          { props.filename }
         </div>
         <div>
           | | |
