@@ -3,21 +3,30 @@
   background-color: #000000;
   color: white;
   display: flex;
-  justify-content: space-between;
   padding: 8px;
 }
 
 .Toolbar__branding {
   align-items: center;
   display: flex;
+  width: 50%;
 }
 
 .Toolbar__branding__text {
-  margin-left: 8px;
   font-size: 24px;
+  margin-left: 8px;
 }
 
 .Toolbar__branding__logo {
   max-width: 32px;
   max-height: 32px;
+}
+
+.Toolbar__filename {
+  white-space: nowrap;
+}
+
+.Toolbar__menu-icon {
+  text-align: right;
+  width: 50%;
 }
