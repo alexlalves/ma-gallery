@@ -2,23 +2,31 @@ import React from 'react';
 import logo from '../../assets/logo/logo512.png';
 import './Toolbar.css';
 
-const App: React.FC = () => {
-  return (
-    <nav className='Toolbar'>
-      <div className='Toolbar__branding'>
-        <img className='Toolbar__branding__logo' src={logo}/>
-        <span className='Toolbar__branding__text'>
-          Ma Gallery
-        </span>
-      </div>
-      <div>
-        file_name.png
-      </div>
-      <div>
-        Something Else
-      </div>
-    </nav>
-  );
+const path = window.require('path');
+
+interface IProps {
+  filename: string,
 }
 
-export default App;
+class Toolbar extends React.Component<IProps> {
+  public render() {
+    return (
+      <nav className='Toolbar'>
+        <div className='Toolbar__branding'>
+          <img className='Toolbar__branding__logo' src={logo} alt='aaa'/>
+          <span className='Toolbar__branding__text'>
+            Ma Gallery
+          </span>
+        </div>
+        <div>
+          { path.parse(this.props.filename).base }
+        </div>
+        <div>
+          | | |
+        </div>
+      </nav>
+    );
+  }
+}
+
+export default Toolbar;

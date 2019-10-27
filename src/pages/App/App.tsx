@@ -62,7 +62,7 @@ class App extends React.Component<IProps, IState> {
     return (
       <div className='App' onKeyDown={this.keyPress} tabIndex={0}>
         <div className='App__toolbar'>
-          <Toolbar/>
+          <Toolbar filename={this.state.currentImage}/>
         </div>
         <div className='App__images'>
           <img
