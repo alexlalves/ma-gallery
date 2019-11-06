@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo/logo512.png';
+import logo from '../../assets/logo/logo192_light.png';
 import './Toolbar.css';
 
 interface IProps {
