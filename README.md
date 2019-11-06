@@ -1,6 +1,6 @@
 <h1 align="center">
   <img
-    src="https://user-images.githubusercontent.com/30939389/67155716-a372f580-f2ea-11e9-949f-3cdb65711f29.png"
+    src="https://user-images.githubusercontent.com/30939389/68344767-987fd980-00ce-11ea-86b1-a5e82b4e981c.png"
     alt="Ma Gallery Logo"
   />
   <br/>
@@ -8,7 +8,7 @@
   <br/>
   <br/>
   <img
-    src="https://user-images.githubusercontent.com/30939389/67643073-b3de2e00-f8f1-11e9-959e-f9dace2cf34e.png"
+    src="https://user-images.githubusercontent.com/30939389/68344948-fd3b3400-00ce-11ea-8f58-e619e5b09ca7.png"
     alt="Preview"
   />
 </h1>
