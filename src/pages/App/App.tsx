@@ -18,12 +18,19 @@ interface IProps {
   files: string[],
 }
 
+function indexOfFile(file: string, fileArray: string[]): number {
+  const fileName = path.parse(file).base;
+  const nameArray = fileArray.map((element) => path.parse(element).base);
+
+  return nameArray.indexOf(fileName);
+}
+
 class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
       currentImage: props.openedFile,
-      imageNumber: 0,
+      imageNumber: indexOfFile(props.openedFile, props.files),
     };
 
     images = props.files;
