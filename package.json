@@ -25,7 +25,7 @@
     "server": "cross-env BROWSER=none yarn react-scripts start",
     "start": "node_modules/.bin/electron .",
     "test": "react-scripts test --env=jsdom",
-    "build": "yarn react-scripts build && cp electron.js build/electron.js && yarn electron-builder",
+    "build": "yarn compile && yarn react-scripts build && cp electron.js build/electron.js && yarn electron-builder",
     "release": "yarn react-scripts build && electron-builder --publish=always"
   },
   "eslintConfig": {
