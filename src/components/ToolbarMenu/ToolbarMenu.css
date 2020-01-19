@@ -11,15 +11,16 @@
 }
 
 .ToolbarMenu__options {
-  text-align: right;
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  text-align: right;
 }
 
 .ToolbarMenu__options__option {
-  display: flex;
   align-items: center;
+  cursor: pointer;
+  display: flex;
   margin-top: 20px;
 }
 
