@@ -28,6 +28,13 @@
 }
 
 .Toolbar__menu-icon {
-  text-align: right;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
   width: 50%;
+}
+
+.Toolbar__menu-icon__icon {
+  max-width: 20px;
+  max-height: 20px;
 }

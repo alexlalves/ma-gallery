@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../assets/logo/logo_light.svg';
+import burger from '../../assets/icons/burger_light.svg';
 import './Toolbar.css';
 
 interface IProps {
@@ -22,7 +23,7 @@ class Toolbar extends React.PureComponent<IProps> {
           { props.filename }
         </div>
         <div className='Toolbar__menu-icon'>
-          | | |
+          <img className='Toolbar__menu-icon__icon' src={burger} alt='' />
         </div>
       </nav>
     );
