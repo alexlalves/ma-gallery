@@ -1,11 +1,37 @@
 .ToolbarMenu {
   background-color: #000000;
+  box-sizing: border-box;
   display: block;
-  min-width: 200px;
-  min-height: 300px;
+  padding: 0 8px;
   z-index: 2;
 
   position: absolute;
   right: 0;
   top: 48px;
+}
+
+.ToolbarMenu__options {
+  text-align: right;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ToolbarMenu__options__option {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.ToolbarMenu__options__option:first-child {
+  margin-top: 10px;
+}
+
+.ToolbarMenu__options__option:last-child {
+  margin-bottom: 10px;
+}
+
+.ToolbarMenu__options__option__image {
+  max-height: 20px;
+  max-width: 20px;
 }
