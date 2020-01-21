@@ -4,8 +4,8 @@ import * as isDev from 'electron-is-dev';
 import * as path from 'path';
 import * as fs from 'fs';
 
-let mainWindow;
-let fileName;
+let mainWindow: BrowserWindow;
+let fileName: string;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -55,13 +55,20 @@ function filterFileExtensions(filenames) {
   return (filenames.filter((file) => isAllowedFileExtension(file)));
 }
 
-ipcMain.on('opened-file-request', (event) => {
-  fileName = isDev ? '/sample_images/gif.gif' : process.argv[1];
+ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string) => {
+  if (userRequest) {
+    fileName = userFile;
+  } else if (isDev) {
+    fileName = '/sample_images/gif.gif';
+  } else {
+    [, fileName] = process.argv;
+  }
+
   event.returnValue = fileName;
 });
 
-ipcMain.on('opened-file-directory', (event) => {
-  if (isDev) {
+ipcMain.on('opened-file-directory', (event, userRequest: boolean) => {
+  if (isDev && !userRequest) {
     const directory = path.dirname(path.join(__dirname, 'public/sample_images/gif.gif'));
 
     const filenames = fs.readdirSync(directory);
