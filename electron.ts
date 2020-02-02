@@ -29,7 +29,7 @@ app.on('ready', createWindow);
 app.on('window-all-closed', () => { if (process.platform !== 'darwin') { app.quit(); } });
 app.on('activate', () => { if (mainWindow === null) { createWindow(); } });
 
-function isAllowedFileExtension(filename) {
+function isAllowedFileExtension(filename: string) {
   const allowedExtensions = [
     '.apng',
     '.png',
@@ -51,7 +51,7 @@ function isAllowedFileExtension(filename) {
   return allowedExtensions.includes(path.extname(filename).toLowerCase());
 }
 
-function filterFileExtensions(filenames) {
+function filterFileExtensions(filenames: string[]) {
   return (filenames.filter((file) => isAllowedFileExtension(file)));
 }
 
