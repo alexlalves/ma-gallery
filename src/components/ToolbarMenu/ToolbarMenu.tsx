@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { updateAvailableImages } from '../../store/actions';
+import {
+  updateAvailableImages,
+  updateCurrentImage,
+} from '../../store/actions';
 
 import './ToolbarMenu.css';
 import AboutIcon from '../../assets/icons/about_light.svg';
@@ -19,6 +22,7 @@ interface OpenDialogResults {
 
 interface IProps {
   updateAvailableImages: (files: string[]) => object;
+  updateCurrentImage: (file: string) => object;
 }
 
 class ToolbarMenu extends React.PureComponent<IProps> {
@@ -32,6 +36,11 @@ class ToolbarMenu extends React.PureComponent<IProps> {
   public updateFiles = (files: string[]) => {
     const { props } = this;
     props.updateAvailableImages(files);
+  }
+
+  public updateFile = (file: string) => {
+    const { props } = this;
+    props.updateCurrentImage(file);
   }
 
   public openfile = () => {
@@ -57,10 +66,8 @@ class ToolbarMenu extends React.PureComponent<IProps> {
         const fileName = electron.ipcRenderer.sendSync('opened-file-request', true, filePaths[0]);
         const availableFiles = electron.ipcRenderer.sendSync('opened-file-directory', true);
 
-        console.log(fileName);
-        console.log(availableFiles);
-
         this.updateFiles(availableFiles);
+        this.updateFile(fileName);
       }
     });
   }
@@ -115,5 +122,5 @@ class ToolbarMenu extends React.PureComponent<IProps> {
 
 export default connect(
   null,
-  { updateAvailableImages },
+  { updateAvailableImages, updateCurrentImage },
 )(ToolbarMenu);

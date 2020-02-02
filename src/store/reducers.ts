@@ -1,23 +1,12 @@
-import { actionTypes } from './actions';
+import { ActionTypes, Actions } from './actions';
+import { State, defaultState } from './store';
 
-interface Action {
-  type: actionTypes
-  files?: string[]
-}
-
-interface State {
-  files?: string[]
-}
-
-const filesReducer = (state: State = {}, action: Action) => {
+const filesReducer = (state: State = defaultState, action: Actions): State => {
   switch (action.type) {
-    case actionTypes.UPDATE_FILES: {
-      console.log(actionTypes.UPDATE_FILES);
-      console.log(action.files);
-
+    case ActionTypes.UpdateDirectoryFiles: {
       return {
         ...state,
-        files: action.files,
+        directoryFiles: action.files,
       };
     }
     default: {
