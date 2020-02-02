@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { updateAvailableImages } from '../../store/actions';
 
 import './ToolbarMenu.css';
 import AboutIcon from '../../assets/icons/about_light.svg';
@@ -9,12 +12,26 @@ import SlideshowIcon from '../../assets/icons/slideshow_light.svg';
 
 const electron = window.require('electron');
 
-class ToolbarMenu extends React.PureComponent<{}> {
+interface OpenDialogResults {
+  canceled: boolean;
+  filePaths: string[];
+}
+
+interface IProps {
+  updateAvailableImages: (files: string[]) => object;
+}
+
+class ToolbarMenu extends React.PureComponent<IProps> {
   public setFullscreen = () => {
     const window = electron.remote.getCurrentWindow();
     const isFullscreen = window.isFullScreen();
 
     window.setFullScreen(!isFullscreen);
+  }
+
+  public updateFiles = (files: string[]) => {
+    const { props } = this;
+    props.updateAvailableImages(files);
   }
 
   public openfile = () => {
@@ -35,15 +52,15 @@ class ToolbarMenu extends React.PureComponent<{}> {
         { name: 'Windows Icon', extensions: ['ico'] },
         { name: 'Windows Cursor', extensions: ['cur'] },
       ],
-    }).then(({ canceled, filePaths }: {canceled: boolean, filePaths: string[] }) => {
+    }).then(({ canceled, filePaths }: OpenDialogResults) => {
       if (!canceled) {
-        console.log(filePaths);
-
         const fileName = electron.ipcRenderer.sendSync('opened-file-request', true, filePaths[0]);
         const availableFiles = electron.ipcRenderer.sendSync('opened-file-directory', true);
 
         console.log(fileName);
         console.log(availableFiles);
+
+        this.updateFiles(availableFiles);
       }
     });
   }
@@ -96,4 +113,7 @@ class ToolbarMenu extends React.PureComponent<{}> {
   }
 }
 
-export default ToolbarMenu;
+export default connect(
+  null,
+  { updateAvailableImages },
+)(ToolbarMenu);
