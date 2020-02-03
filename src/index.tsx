@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './pages/App/App';
-import store from './store/store';
+import Store from './store';
 
 const { ipcRenderer } = window.require('electron');
 
