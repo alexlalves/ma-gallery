@@ -23,15 +23,11 @@ const filesReducer = (
 
       const incrementedIndex = index === fileCount - 1 ? 0 : index + 1;
 
-      const newState = {
+      return {
         ...state,
         index: incrementedIndex,
         currentFile: state.directoryFiles[incrementedIndex],
       };
-
-      console.log(state, newState);
-
-      return newState;
     }
     case ActionTypes.UpdateDirectoryFiles: {
       return {
