@@ -1,53 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Toolbar from '../../components/Toolbar/Toolbar';
-import { updateCurrentImage } from '../../store/actions';
+import {
+  nextImage,
+  previousImage,
+} from '../../store/actions';
 import { State } from '../../store';
 import './App.css';
 
 const path = window.require('path');
 
-interface IState {
-  currentImage: string,
-  imageNumber: number,
-}
-
 interface IProps {
   currentFile: string,
   directoryFiles: string[],
+  imageNumber: number,
 
-  updateCurrentImage: (file: string) => object,
+  nextImage: () => object,
+  previousImage: () => object,
 }
 
-function indexOfFile(file: string, fileArray: string[]): number {
-  const fileName = path.parse(file).base;
-  const nameArray = fileArray.map((element) => path.parse(element).base);
-
-  return nameArray.indexOf(fileName);
-}
-
-class App extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      currentImage: props.currentFile,
-      imageNumber: indexOfFile(props.currentFile, props.directoryFiles),
-    };
-  }
-
+class App extends React.Component<IProps> {
   public extractFilename = () => {
-    const { state } = this;
-    return path.parse(state.currentImage).base;
+    const { props } = this;
+    return path.parse(props.currentFile).base;
   }
 
   public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
       case 'ArrowLeft': {
-        this.changeMockedImageToLeft();
+        this.changeImageToLeft();
         break;
       }
       case 'ArrowRight': {
-        this.changeMockedImageToRight();
+        this.changeImageToRight();
         break;
       }
       default: {
@@ -56,38 +41,18 @@ class App extends React.Component<IProps, IState> {
     }
   }
 
-  public changeMockedImageToRight = () => {
-    const {
-      props,
-      state,
-    } = this;
-    const newImageNumber = state.imageNumber === props.directoryFiles.length - 1 ? 0 : state.imageNumber + 1;
-
-    this.setState({
-      currentImage: props.directoryFiles[newImageNumber],
-      imageNumber: newImageNumber,
-    });
-
-    props.updateCurrentImage(props.directoryFiles[newImageNumber]);
+  public changeImageToRight = () => {
+    const { props } = this;
+    props.nextImage();
   }
 
-  public changeMockedImageToLeft = () => {
-    const {
-      props,
-      state,
-    } = this;
-    const newImageNumber = state.imageNumber === 0 ? props.directoryFiles.length - 1 : state.imageNumber - 1;
-
-    this.setState({
-      currentImage: props.directoryFiles[newImageNumber],
-      imageNumber: newImageNumber,
-    });
-
-    props.updateCurrentImage(props.directoryFiles[newImageNumber]);
+  public changeImageToLeft = () => {
+    const { props } = this;
+    props.previousImage();
   }
 
   public render() {
-    const { props, state } = this;
+    const { props } = this;
     return (
       <div
         className='App'
@@ -101,12 +66,12 @@ class App extends React.Component<IProps, IState> {
           <img
             alt={props.currentFile}
             className='App__images__image App__images__image--main'
-            src={state.currentImage}
+            src={props.currentFile}
           />
           <img
             alt='logo a'
             className='App__images__image App__images__image--background'
-            src={state.currentImage}
+            src={props.currentFile}
           />
         </div>
       </div>
@@ -117,10 +82,12 @@ class App extends React.Component<IProps, IState> {
 const MappedState = (state: State) => ({
   currentFile: state.currentFile,
   directoryFiles: state.directoryFiles,
+  imageNumber: state.index,
 });
 
 const MappedActions = {
-  updateCurrentImage,
+  nextImage,
+  previousImage,
 };
 
 export default connect(

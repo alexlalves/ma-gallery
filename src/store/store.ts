@@ -1,14 +1,16 @@
 import { createStore } from 'redux';
-import reducer from './reducers';
+import reducers from './reducers';
 
 export interface State {
-  directoryFiles: string[]
   currentFile: string
+  directoryFiles: string[]
+  index: number,
 }
 
 export const defaultState: State = {
-  directoryFiles: [],
   currentFile: '',
+  directoryFiles: [],
+  index: 0,
 };
 
-export default createStore(reducer);
+export default createStore(reducers);

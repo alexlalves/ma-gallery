@@ -59,7 +59,7 @@ ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string
   if (userRequest) {
     fileName = userFile;
   } else if (isDev) {
-    fileName = '/sample_images/gif.gif';
+    fileName = 'sample_images\\gif.gif';
   } else {
     [, fileName] = process.argv;
   }
