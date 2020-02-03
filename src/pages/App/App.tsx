@@ -1,12 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Toolbar from '../../components/Toolbar/Toolbar';
+import { updateCurrentImage } from '../../store/actions';
+import { State } from '../../store';
 import './App.css';
 
 const path = window.require('path');
-
-let images = [
-  '',
-];
 
 interface IState {
   currentImage: string,
@@ -14,8 +13,10 @@ interface IState {
 }
 
 interface IProps {
-  openedFile: string,
-  files: string[],
+  currentFile: string,
+  directoryFiles: string[],
+
+  updateCurrentImage: (file: string) => object,
 }
 
 function indexOfFile(file: string, fileArray: string[]): number {
@@ -29,11 +30,9 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      currentImage: props.openedFile,
-      imageNumber: indexOfFile(props.openedFile, props.files),
+      currentImage: props.currentFile,
+      imageNumber: indexOfFile(props.currentFile, props.directoryFiles),
     };
-
-    images = props.files;
   }
 
   public extractFilename = () => {
@@ -58,23 +57,33 @@ class App extends React.Component<IProps, IState> {
   }
 
   public changeMockedImageToRight = () => {
-    const { state } = this;
-    const newImageNumber = state.imageNumber === images.length - 1 ? 0 : state.imageNumber + 1;
+    const {
+      props,
+      state,
+    } = this;
+    const newImageNumber = state.imageNumber === props.directoryFiles.length - 1 ? 0 : state.imageNumber + 1;
 
     this.setState({
-      currentImage: images[newImageNumber],
+      currentImage: props.directoryFiles[newImageNumber],
       imageNumber: newImageNumber,
     });
+
+    props.updateCurrentImage(props.directoryFiles[newImageNumber]);
   }
 
   public changeMockedImageToLeft = () => {
-    const { state } = this;
-    const newImageNumber = state.imageNumber === 0 ? images.length - 1 : state.imageNumber - 1;
+    const {
+      props,
+      state,
+    } = this;
+    const newImageNumber = state.imageNumber === 0 ? props.directoryFiles.length - 1 : state.imageNumber - 1;
 
     this.setState({
-      currentImage: images[newImageNumber],
+      currentImage: props.directoryFiles[newImageNumber],
       imageNumber: newImageNumber,
     });
+
+    props.updateCurrentImage(props.directoryFiles[newImageNumber]);
   }
 
   public render() {
@@ -90,7 +99,7 @@ class App extends React.Component<IProps, IState> {
         </div>
         <div className='App__images'>
           <img
-            alt={props.openedFile}
+            alt={props.currentFile}
             className='App__images__image App__images__image--main'
             src={state.currentImage}
           />
@@ -105,4 +114,16 @@ class App extends React.Component<IProps, IState> {
   }
 }
 
-export default App;
+const MappedState = (state: State) => ({
+  currentFile: state.currentFile,
+  directoryFiles: state.directoryFiles,
+});
+
+const MappedActions = {
+  updateCurrentImage,
+};
+
+export default connect(
+  MappedState,
+  MappedActions,
+)(App);

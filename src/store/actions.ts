@@ -5,24 +5,24 @@ export enum ActionTypes {
 
 interface UpdateDirectoryFilesAction {
   type: ActionTypes.UpdateDirectoryFiles
-  files: string[]
+  images: string[]
 }
 
 interface UpdateCurrentAction {
   type: ActionTypes.UpdateCurrentFile
-  file: string
+  image: string
 }
 
 export type Actions =
   | UpdateCurrentAction
   | UpdateDirectoryFilesAction;
 
-export const updateAvailableImages = (files: string[]): UpdateDirectoryFilesAction => ({
+export const updateAvailableImages = (images: string[]): UpdateDirectoryFilesAction => ({
   type: ActionTypes.UpdateDirectoryFiles,
-  files,
+  images,
 });
 
 export const updateCurrentImage = (image: string): UpdateCurrentAction => ({
   type: ActionTypes.UpdateCurrentFile,
-  file: image,
+  image,
 });

@@ -6,7 +6,13 @@ const filesReducer = (state: State = defaultState, action: Actions): State => {
     case ActionTypes.UpdateDirectoryFiles: {
       return {
         ...state,
-        directoryFiles: action.files,
+        directoryFiles: action.images,
+      };
+    }
+    case ActionTypes.UpdateCurrentFile: {
+      return {
+        ...state,
+        currentFile: action.image,
       };
     }
     default: {

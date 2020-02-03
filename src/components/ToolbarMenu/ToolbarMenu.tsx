@@ -120,7 +120,12 @@ class ToolbarMenu extends React.PureComponent<IProps> {
   }
 }
 
+const MappedActions = {
+  updateAvailableImages,
+  updateCurrentImage,
+};
+
 export default connect(
   null,
-  { updateAvailableImages, updateCurrentImage },
+  MappedActions,
 )(ToolbarMenu);
