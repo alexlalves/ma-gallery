@@ -75,7 +75,7 @@ ipcMain.on('opened-file-directory', (event, userRequest: boolean) => {
     const filteredNames = (filterFileExtensions(filenames));
     const files = filteredNames.map((file) => path.join('sample_images', file));
 
-    event.returnValue = files;
+    event.sender.send('opened-file-directory-reply', files);
   } else {
     const directory = path.dirname(fileName);
 
@@ -83,6 +83,6 @@ ipcMain.on('opened-file-directory', (event, userRequest: boolean) => {
     const filteredNames = (filterFileExtensions(filenames));
     const files = filteredNames.map((file) => path.join(directory, file));
 
-    event.returnValue = files;
+    event.sender.send('opened-file-directory-reply', files);
   }
 });

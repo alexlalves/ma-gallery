@@ -17,6 +17,7 @@ const filesReducer = (
         currentFile: state.directoryFiles[decrementedIndex],
       };
     }
+
     case ActionTypes.IncrementFileIndex: {
       const fileCount = state.directoryFiles.length;
       const { index } = state;
@@ -29,12 +30,14 @@ const filesReducer = (
         currentFile: state.directoryFiles[incrementedIndex],
       };
     }
+
     case ActionTypes.UpdateDirectoryFiles: {
       return {
         ...state,
         directoryFiles: action.images,
       };
     }
+
     case ActionTypes.UpdateCurrentFile: {
       const newIndex = state.directoryFiles.indexOf(action.image);
 
@@ -44,6 +47,7 @@ const filesReducer = (
         index: newIndex,
       };
     }
+
     default: {
       return state;
     }

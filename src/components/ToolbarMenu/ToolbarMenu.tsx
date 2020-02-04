@@ -64,9 +64,12 @@ class ToolbarMenu extends React.PureComponent<IProps> {
     }).then(({ canceled, filePaths }: OpenDialogResults) => {
       if (!canceled) {
         const fileName = electron.ipcRenderer.sendSync('opened-file-request', true, filePaths[0]);
-        const availableFiles = electron.ipcRenderer.sendSync('opened-file-directory', true);
 
-        this.updateFiles(availableFiles);
+        electron.ipcRenderer.send('opened-file-directory', true);
+        electron.ipcRenderer.on('opened-file-directory-reply', (_event: any, files: string[]) => {
+          this.updateFiles(files);
+        });
+
         this.updateFile(fileName);
       }
     });

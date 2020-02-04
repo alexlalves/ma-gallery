@@ -12,9 +12,12 @@ import {
 const { ipcRenderer } = window.require('electron');
 
 const fileName = ipcRenderer.sendSync('opened-file-request', false);
-const availableFiles = ipcRenderer.sendSync('opened-file-directory', false);
 
-Store.dispatch(updateAvailableImages(availableFiles));
+ipcRenderer.send('opened-file-directory', false);
+ipcRenderer.on('opened-file-directory-reply', (_event: any, files: string[]) => {
+  Store.dispatch(updateAvailableImages(files));
+});
+
 Store.dispatch(updateCurrentImage(fileName));
 
 ReactDOM.render(
