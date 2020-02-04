@@ -32,9 +32,12 @@ const filesReducer = (
     }
 
     case ActionTypes.UpdateDirectoryFiles: {
+      const newIndex = action.images.indexOf(state.currentFile);
+
       return {
         ...state,
         directoryFiles: action.images,
+        index: newIndex,
       };
     }
 
