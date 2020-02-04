@@ -33,7 +33,11 @@ class Toolbar extends React.PureComponent<IProps, IState> {
     return (
       <nav className='Toolbar'>
         <div className='Toolbar__branding'>
-          <img className='Toolbar__branding__logo' src={logo} alt='' />
+          <img
+            className='Toolbar__branding__logo'
+            src={logo}
+            alt=''
+          />
           <span className='Toolbar__branding__text'>
             Ma Gallery
           </span>
