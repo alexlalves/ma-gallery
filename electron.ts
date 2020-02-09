@@ -54,6 +54,13 @@ function filterFileExtensions(filenames: string[]) {
   return (filenames.filter((file) => isAllowedFileExtension(file)));
 }
 
+function listAvailableImages(directory: string) {
+  const filenames = fs.readdirSync(directory);
+  const filteredNames = filterFileExtensions(filenames);
+
+  return filteredNames;
+}
+
 ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string) => {
   let filename: string;
 
@@ -66,9 +73,8 @@ ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string
   } else {
     const picturesPath = app.getPath('pictures');
 
-    const filenames = fs.readdirSync(picturesPath);
-    const filteredNames = (filterFileExtensions(filenames));
-    const firstFile = path.join(picturesPath, filteredNames[0]);
+    const filenames = listAvailableImages(picturesPath);
+    const firstFile = path.join(picturesPath, filenames[0]);
 
     filename = firstFile;
   }
@@ -77,21 +83,19 @@ ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string
 });
 
 ipcMain.on('opened-file-directory', (event, userRequest: boolean, filename: string) => {
+  let files: string[];
+
   if (isDev && !userRequest) {
     const directory = path.dirname(path.join(__dirname, 'public/sample_images/gif.gif'));
 
-    const filenames = fs.readdirSync(directory);
-    const filteredNames = (filterFileExtensions(filenames));
-    const files = filteredNames.map((file) => path.join('sample_images', file));
-
-    event.sender.send('opened-file-directory-reply', files);
+    files = listAvailableImages(directory)
+      .map((file) => path.join('sample_images', file));
   } else {
     const directory = path.dirname(filename);
 
-    const filenames = fs.readdirSync(directory);
-    const filteredNames = (filterFileExtensions(filenames));
-    const files = filteredNames.map((file) => path.join(directory, file));
-
-    event.sender.send('opened-file-directory-reply', files);
+    files = listAvailableImages(directory)
+      .map((file) => path.join(directory, file));
   }
+
+  event.sender.send('opened-file-directory-reply', files);
 });
