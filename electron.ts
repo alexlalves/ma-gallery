@@ -5,7 +5,6 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 let mainWindow: BrowserWindow;
-let fileName: string;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -56,18 +55,20 @@ function filterFileExtensions(filenames: string[]) {
 }
 
 ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string) => {
+  let filename: string;
+
   if (userRequest) {
-    fileName = userFile;
+    filename = userFile;
   } else if (isDev) {
-    fileName = 'sample_images\\gif.gif';
+    filename = 'sample_images\\gif.gif';
   } else {
-    [, fileName] = process.argv;
+    [, filename] = process.argv;
   }
 
-  event.returnValue = fileName;
+  event.returnValue = filename;
 });
 
-ipcMain.on('opened-file-directory', (event, userRequest: boolean) => {
+ipcMain.on('opened-file-directory', (event, userRequest: boolean, filename: string) => {
   if (isDev && !userRequest) {
     const directory = path.dirname(path.join(__dirname, 'public/sample_images/gif.gif'));
 
@@ -77,7 +78,7 @@ ipcMain.on('opened-file-directory', (event, userRequest: boolean) => {
 
     event.sender.send('opened-file-directory-reply', files);
   } else {
-    const directory = path.dirname(fileName);
+    const directory = path.dirname(filename);
 
     const filenames = fs.readdirSync(directory);
     const filteredNames = (filterFileExtensions(filenames));

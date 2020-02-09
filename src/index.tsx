@@ -13,7 +13,7 @@ const { ipcRenderer } = window.require('electron');
 
 const fileName = ipcRenderer.sendSync('opened-file-request', false);
 
-ipcRenderer.send('opened-file-directory', false);
+ipcRenderer.send('opened-file-directory', false, fileName);
 ipcRenderer.on('opened-file-directory-reply', (_event: any, files: string[]) => {
   Store.dispatch(updateAvailableImages(files));
 });
