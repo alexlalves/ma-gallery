@@ -61,8 +61,16 @@ ipcMain.on('opened-file-request', (event, userRequest: boolean, userFile: string
     filename = userFile;
   } else if (isDev) {
     filename = 'sample_images\\gif.gif';
-  } else {
+  } else if (process.argv[1]) {
     [, filename] = process.argv;
+  } else {
+    const picturesPath = app.getPath('pictures');
+
+    const filenames = fs.readdirSync(picturesPath);
+    const filteredNames = (filterFileExtensions(filenames));
+    const firstFile = path.join(picturesPath, filteredNames[0]);
+
+    filename = firstFile;
   }
 
   event.returnValue = filename;
