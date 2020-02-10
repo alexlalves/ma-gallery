@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewbox="0 0 40 40">
   <path d="M30 10H20l10 10z"/>
   <path d="M0 0v20h5V5h30v30H20v5h20V0z"/>
   <path d="M0 25v15h15V25zM20 15l5 5h-5z"/>
