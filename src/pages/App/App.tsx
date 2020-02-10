@@ -9,8 +9,6 @@ import {
 import { State } from '../../store';
 import './App.css';
 
-const path = window.require('path');
-
 interface IProps {
   currentFile: string,
   directoryFiles: string[],
@@ -21,11 +19,6 @@ interface IProps {
 }
 
 class App extends React.Component<IProps> {
-  public extractFilename = () => {
-    const { props } = this;
-    return path.parse(props.currentFile).base;
-  }
-
   public keyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
       case 'ArrowLeft': {
@@ -59,7 +52,7 @@ class App extends React.Component<IProps> {
         onKeyDown={this.keyPress}
         tabIndex={0}
       >
-        <Toolbar filename={this.extractFilename()} />
+        <Toolbar />
         <ImageViewer />
       </main>
     );

@@ -1,18 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import ToolbarMenu from '../ToolbarMenu';
 import { ReactComponent as LogoIcon } from '../../assets/logo/logo.svg';
 import { ReactComponent as BurgerIcon } from '../../assets/icons/burger.svg';
+import { State } from '../../store';
 import './Toolbar.css';
-import ToolbarMenu from '../ToolbarMenu';
+
+const path = window.require('path');
 
 interface IState {
   menuOpened: boolean,
 }
 
 interface IProps {
-  filename: string,
+  currentFile: string,
 }
 
-class Toolbar extends React.PureComponent<IProps, IState> {
+class Toolbar extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
 
@@ -27,8 +32,13 @@ class Toolbar extends React.PureComponent<IProps, IState> {
     this.setState(({ menuOpened: !menuOpened }));
   }
 
+  public extractFilename = () => {
+    const { props } = this;
+    return path.parse(props.currentFile).base;
+  }
+
   public render() {
-    const { props, state } = this;
+    const { state } = this;
 
     return (
       <nav className='Toolbar'>
@@ -41,7 +51,7 @@ class Toolbar extends React.PureComponent<IProps, IState> {
           </span>
         </div>
         <div className='Toolbar__filename'>
-          { props.filename }
+          { this.extractFilename() }
         </div>
         <div className='Toolbar__menu-icon'>
           <BurgerIcon
@@ -55,4 +65,11 @@ class Toolbar extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default Toolbar;
+const MappedState = (state: State) => ({
+  currentFile: state.currentFile,
+});
+
+export default connect(
+  MappedState,
+  {},
+)(Toolbar);
