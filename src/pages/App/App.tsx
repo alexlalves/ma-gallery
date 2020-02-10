@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Toolbar from '../../components/Toolbar/Toolbar';
+import ImageViewer from '../../components/ImageViewer';
 import {
   nextImage,
   previousImage,
@@ -52,29 +53,15 @@ class App extends React.Component<IProps> {
   }
 
   public render() {
-    const { props } = this;
     return (
-      <div
+      <main
         className='App'
         onKeyDown={this.keyPress}
         tabIndex={0}
       >
-        <div className='App__toolbar'>
-          <Toolbar filename={this.extractFilename()} />
-        </div>
-        <div className='App__images'>
-          <img
-            alt={props.currentFile}
-            className='App__images__image App__images__image--main'
-            src={props.currentFile}
-          />
-          <img
-            alt='logo a'
-            className='App__images__image App__images__image--background'
-            src={props.currentFile}
-          />
-        </div>
-      </div>
+        <Toolbar filename={this.extractFilename()} />
+        <ImageViewer />
+      </main>
     );
   }
 }

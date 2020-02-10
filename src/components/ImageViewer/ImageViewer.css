@@ -1,0 +1,30 @@
+.ImageViewer {
+  /* Occupy screen space not consumed by toolbar */
+  flex-grow: 1;
+
+  /* Center image */
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  height: 100%;
+  width: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.ImageViewer__main-image {
+  max-width: 100%;
+  max-height: 100%;
+  z-index: 1;
+}
+
+.ImageViewer__background-image {
+  position: absolute;
+
+  min-width: 100%;
+  min-height: 100%;
+  filter: blur(20px) brightness(.8);
+}
