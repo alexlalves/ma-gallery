@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewbox="0 0 40 40">
-  <g fill="#fcfcfc">
+  <g fill="var(--inverse-color)">
     <path d="M0 15v15h35l5-5V10H5zm5 0h30v10H5z"/>
     <path d="M16 19l1 1h1l2-2 2 2h1l1-1-4-4zM10 25h10l-5-5zM20 25h10l-5-5z"/>
     <path d="M15 25h10l-5-5zM40 35l-5 5H0v-5zM40 5V0H5L0 5z"/>
