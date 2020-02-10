@@ -1,4 +1,5 @@
 import React from 'react';
+import SVG from 'react-inlinesvg';
 import { connect } from 'react-redux';
 
 import {
@@ -83,7 +84,7 @@ class ToolbarMenu extends React.PureComponent<IProps> {
             className='ToolbarMenu__options__option'
             onClick={this.openfile}
           >
-            <img
+            <SVG
               className='ToolbarMenu__options__option__image'
               src={OpenfileIcon}
               alt='Open file'
@@ -93,26 +94,26 @@ class ToolbarMenu extends React.PureComponent<IProps> {
             className='ToolbarMenu__options__option'
             onClick={this.setFullscreen}
           >
-            <img
+            <SVG
               className='ToolbarMenu__options__option__image'
               src={FullscreenIcon}
               alt='Full screen'
             />
           </li>
           <li className='ToolbarMenu__options__option'>
-            <img
+            <SVG
               className='ToolbarMenu__options__option__image'
               src={SlideshowIcon}
             />
           </li>
           <li className='ToolbarMenu__options__option'>
-            <img
+            <SVG
               className='ToolbarMenu__options__option__image'
               src={SettingsIcon}
             />
           </li>
           <li className='ToolbarMenu__options__option'>
-            <img
+            <SVG
               className='ToolbarMenu__options__option__image'
               src={AboutIcon}
             />

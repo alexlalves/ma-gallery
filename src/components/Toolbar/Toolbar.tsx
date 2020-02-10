@@ -1,4 +1,5 @@
 import React from 'react';
+import SVG from 'react-inlinesvg';
 import logo from '../../assets/logo/logo_light.svg';
 import burger from '../../assets/icons/burger_light.svg';
 import './Toolbar.css';
@@ -33,7 +34,7 @@ class Toolbar extends React.PureComponent<IProps, IState> {
     return (
       <nav className='Toolbar'>
         <div className='Toolbar__branding'>
-          <img
+          <SVG
             className='Toolbar__branding__logo'
             src={logo}
             alt=''
@@ -46,7 +47,7 @@ class Toolbar extends React.PureComponent<IProps, IState> {
           { props.filename }
         </div>
         <div className='Toolbar__menu-icon'>
-          <img
+          <SVG
             className='Toolbar__menu-icon__icon'
             onClick={this.menuClick}
             src={burger}
