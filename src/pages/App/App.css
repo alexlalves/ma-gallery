@@ -1,5 +1,12 @@
+:root {
+  --main-color: #000000;
+  --inverse-color: #FFFFFF;
+  --secondary-color: #282c34;
+  --secondary-inverse: #D7D3CB;
+}
+
 .App {
-  background-color: #282c34;
+  background-color: var(--secondary-color);
   text-align: center;
   display: flex;
   flex-direction: column;

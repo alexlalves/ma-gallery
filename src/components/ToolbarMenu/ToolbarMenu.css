@@ -1,5 +1,5 @@
 .ToolbarMenu {
-  background-color: #000000;
+  background-color: var(--main-color);
   box-sizing: border-box;
   display: block;
   padding: 0 8px;
