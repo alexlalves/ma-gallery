@@ -1,7 +1,6 @@
 import React from 'react';
-import SVG from 'react-inlinesvg';
-import logo from '../../assets/logo/logo.svg';
-import burger from '../../assets/icons/burger.svg';
+import { ReactComponent as LogoIcon } from '../../assets/logo/logo.svg';
+import { ReactComponent as BurgerIcon } from '../../assets/icons/burger.svg';
 import './Toolbar.css';
 import ToolbarMenu from '../ToolbarMenu/ToolbarMenu';
 
@@ -34,10 +33,8 @@ class Toolbar extends React.PureComponent<IProps, IState> {
     return (
       <nav className='Toolbar'>
         <div className='Toolbar__branding'>
-          <SVG
+          <LogoIcon
             className='Toolbar__branding__logo'
-            src={logo}
-            alt=''
           />
           <span className='Toolbar__branding__text'>
             Ma Gallery
@@ -47,11 +44,9 @@ class Toolbar extends React.PureComponent<IProps, IState> {
           { props.filename }
         </div>
         <div className='Toolbar__menu-icon'>
-          <SVG
+          <BurgerIcon
             className='Toolbar__menu-icon__icon'
             onClick={this.menuClick}
-            src={burger}
-            alt=''
           />
         </div>
         { state.menuOpened && <ToolbarMenu />}

@@ -1,5 +1,4 @@
 import React from 'react';
-import SVG from 'react-inlinesvg';
 import { connect } from 'react-redux';
 
 import {
@@ -8,11 +7,11 @@ import {
 } from '../../store/actions';
 
 import './ToolbarMenu.css';
-import AboutIcon from '../../assets/icons/about.svg';
-import FullscreenIcon from '../../assets/icons/fullscreen.svg';
-import OpenfileIcon from '../../assets/icons/openfile.svg';
-import SettingsIcon from '../../assets/icons/settings.svg';
-import SlideshowIcon from '../../assets/icons/slideshow.svg';
+import { ReactComponent as AboutIcon } from '../../assets/icons/about.svg';
+import { ReactComponent as FullscreenIcon } from '../../assets/icons/fullscreen.svg';
+import { ReactComponent as OpenfileIcon } from '../../assets/icons/openfile.svg';
+import { ReactComponent as SettingsIcon } from '../../assets/icons/settings.svg';
+import { ReactComponent as SlideshowIcon } from '../../assets/icons/slideshow.svg';
 
 const electron = window.require('electron');
 
@@ -84,38 +83,31 @@ class ToolbarMenu extends React.PureComponent<IProps> {
             className='ToolbarMenu__options__option'
             onClick={this.openfile}
           >
-            <SVG
+            <OpenfileIcon
               className='ToolbarMenu__options__option__image'
-              src={OpenfileIcon}
-              alt='Open file'
             />
           </li>
           <li
             className='ToolbarMenu__options__option'
             onClick={this.setFullscreen}
           >
-            <SVG
+            <FullscreenIcon
               className='ToolbarMenu__options__option__image'
-              src={FullscreenIcon}
-              alt='Full screen'
             />
           </li>
           <li className='ToolbarMenu__options__option'>
-            <SVG
+            <SlideshowIcon
               className='ToolbarMenu__options__option__image'
-              src={SlideshowIcon}
             />
           </li>
           <li className='ToolbarMenu__options__option'>
-            <SVG
+            <SettingsIcon
               className='ToolbarMenu__options__option__image'
-              src={SettingsIcon}
             />
           </li>
           <li className='ToolbarMenu__options__option'>
-            <SVG
+            <AboutIcon
               className='ToolbarMenu__options__option__image'
-              src={AboutIcon}
             />
           </li>
         </ul>
