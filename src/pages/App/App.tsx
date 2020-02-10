@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Toolbar from '../../components/Toolbar/Toolbar';
+import Toolbar from '../../components/Toolbar';
 import ImageViewer from '../../components/ImageViewer';
 import {
   nextImage,

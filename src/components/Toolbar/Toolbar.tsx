@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactComponent as LogoIcon } from '../../assets/logo/logo.svg';
 import { ReactComponent as BurgerIcon } from '../../assets/icons/burger.svg';
 import './Toolbar.css';
-import ToolbarMenu from '../ToolbarMenu/ToolbarMenu';
+import ToolbarMenu from '../ToolbarMenu';
 
 interface IState {
   menuOpened: boolean,
