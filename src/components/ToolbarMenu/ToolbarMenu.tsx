@@ -8,11 +8,11 @@ import {
 } from '../../store/actions';
 
 import './ToolbarMenu.css';
-import AboutIcon from '../../assets/icons/about_light.svg';
-import FullscreenIcon from '../../assets/icons/fullscreen_light.svg';
-import OpenfileIcon from '../../assets/icons/openfile_light.svg';
-import SettingsIcon from '../../assets/icons/settings_light.svg';
-import SlideshowIcon from '../../assets/icons/slideshow_light.svg';
+import AboutIcon from '../../assets/icons/about.svg';
+import FullscreenIcon from '../../assets/icons/fullscreen.svg';
+import OpenfileIcon from '../../assets/icons/openfile.svg';
+import SettingsIcon from '../../assets/icons/settings.svg';
+import SlideshowIcon from '../../assets/icons/slideshow.svg';
 
 const electron = window.require('electron');
 

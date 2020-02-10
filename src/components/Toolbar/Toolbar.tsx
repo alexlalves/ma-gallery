@@ -1,7 +1,7 @@
 import React from 'react';
 import SVG from 'react-inlinesvg';
-import logo from '../../assets/logo/logo_light.svg';
-import burger from '../../assets/icons/burger_light.svg';
+import logo from '../../assets/logo/logo.svg';
+import burger from '../../assets/icons/burger.svg';
 import './Toolbar.css';
 import ToolbarMenu from '../ToolbarMenu/ToolbarMenu';
 
