@@ -1,8 +1,36 @@
 :root {
-  --main-color: #000000;
-  --inverse-color: #FFFFFF;
-  --secondary-color: #282c34;
-  --secondary-inverse: #D7D3CB;
+  --black-primary: #000000;
+  --black-secondary: #282c34;
+  --white-primary: #FFFFFF;
+  --white-secondary: #D7D3CB;
+
+  --main-color: var(--white-primary);
+  --inverse-color: var(--black-primary);
+  --secondary-color: var(--white-secondary);
+  --secondary-inverse: var(--black-secondary);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-color: var(--black-primary);
+    --inverse-color: var(--white-primary);
+    --secondary-color: var(--black-secondary);
+    --secondary-inverse: var(--white-secondary);
+  }
+}
+
+[data-theme="dark"] {
+  --main-color: var(--black-primary);
+  --inverse-color: var(--white-secondary);
+  --secondary-color: var(--black-secondary);
+  --secondary-inverse: var(--white-secondary);
+}
+
+[data-theme="light"] {
+  --main-color: var(--white-secondary);
+  --inverse-color: var(--black-primary);
+  --secondary-color: var(--white-secondary);
+  --secondary-inverse: var(--black-secondary);
 }
 
 .App {
