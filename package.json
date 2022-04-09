@@ -1,7 +1,7 @@
 {
   "author": "Alex L. Alves",
   "name": "ma-gallery",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Simple image browser made with Electron and React",
   "repository": "github:Magmagan/ma-gallery",
   "private": true,
