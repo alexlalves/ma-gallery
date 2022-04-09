@@ -38,6 +38,8 @@ yarn concurrent-start
 
 ## Build
 
+:lady_beetle: **Bug**: Production Ma Gallery is currently crashing when opened on its own. To use Ma Gallery, select an image and choose "Open with Ma Gallery".
+
 ```
 yarn build
 ```
